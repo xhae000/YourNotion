@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+form{
+    font-family: 'Nanum Gothic', sans-serif;
+    text-align:center;
+}
+
+.info-input{
+    width:260px;
+    padding:15px;
+    outline: none;
+    border : none;
+    border-bottom :1.2px solid #c5c5c5;
+    margin-bottom:15px;
+    font-family: 'Nanum Gothic', sans-serif;
+
+
+}
+
+.send-mail{
+    display:inline-block;
+    cursor:pointer;
+    padding: 10px;
+}
+
+.email-input{
+    width : 140px;
+}
+
+
+.naver{
+    display:inline-block;
+    width:62px;
+    color:grey;
+    font-size:12px;
+    border-bottom: 2px solid #eeeeee;
+    background-color:#eeeeee;
+    border-radius:10px;
+}
+
+.input-box{
+    display:inline-block;
+
+}
+
+.input-name{
+    font-weight : bold;
+    text-align:left;
+    padding-top:20px;
+}
+
+.gender-box{
+    width:286px;
+}
+
+.submit-btn{
+    border:0.1px solid #249FFF;
+    color:#1982D5;
+    padding:10px 131px;
+    margin-top:11px;
+    background-color:white;
+    border-radius:20px;
+    cursor:pointer;
+
+}
+
+label{
+    margin-left:12px;
+    margin-right:12px;
+}
+
+.auth-form{
+    padding-top:9px;
+    display:none;
+}
+
+.request-auth{
+    font-size:13px;
+    border:0.1px solid #44C820;
+    color:#3AAB1B;
+    padding:10px;
+    background-color:white;
+    border-radius:20px;
+    cursor:pointer;
+
+}
+
+.key-input{
+    outline:none;
+    border:0px;
+    border-bottom:1.2px solid #c5c5c5;
+    width:115px;
+    padding:13px;
+}
+
+.auth-btn{
+    display:inline-block;
+    width:60px;
+    padding: 12px 0px;
+    cursor:pointer;
+    font-size:13px;
+
+}
+
+.auth-submit{
+    color:white;
+    border-radius:20px;
+    background-color : #3F82FF;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.resend-key{
+    border:0.1px solid #c5c5c5;
+    color: gray;
+    padding:12px 8px;
+    border-radius:20px;
+}
+
+.content-top{
+    text-align: center;
+    font-family: 'Nanum Gothic', sans-serif;
+    padding-bottom:9px;
+}
+
+.join-title{
+    display:inline-block;
+    width:268px;
+    font-size:40px;
+    padding:25px 22px 18px 22px;
+}
+
+.id-alert-box{
+    display:none;
+    color:#DF0101;
+    font-size:13px;
+}

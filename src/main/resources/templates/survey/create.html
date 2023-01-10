@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>설문 만들기</title>
+    <link rel="stylesheet" th:href="@{/css/survey/create.css}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script th:src="@{/js/survey/create.js}"></script>
+
+</head>
+<body>
+    <th:block th:replace="/common/header :: headerFragment"/>
+    <div style="text-align:center;">
+        <div class="cont">
+            <div class="title-cont">
+                <form th:method="post" enctype="multipart/form-data" th:action="@{/survey/createProc}">
+                    <input th:type="text" th:name="title" class="title-input" placeholder="설문의 제목을 입력해주세요." maxlength="32" />
+                    <textarea th:name="des" class="des-textarea" placeholder="어떤 설문인지 설명해주세요." maxlength="500"></textarea><br>
+                    <div class="info-cont" >
+                        <div class="gender-box">
+                            <div class="ph">
+                                설문 대상의 성별
+                            </div>
+                            <div class="gender-cont">
+                                <label><input id="err" th:type="radio" th:name="gender" value="irr" checked/> 상관없음</label><br>
+                                <label><input id="male" th:type="radio" th:name="gender" value="male" /> 남성</label><br>
+                                <label><input id="female" th:type="radio" th:name="gender" value="female" /> 여성</label><br>
+                            </div>
+                        </div>
+
+                        <div class="age-box">
+                            <div class="ph">
+                                설문 대상의 연령
+                            </div>
+                            <div class="age-cont">
+                                <input th:name="start_age" class="start-age age-input" th:type="number" value="1" />
+                                <span style="color:#6E6E6E">~</span>
+                                <input th:name="end_age" class="end-age age-input" th:type="number" value="99"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="question-cont">
+                        <div class="question-list">
+                            <div class="question-box" style="border:none">
+                                <div class="question">
+                                    <input class="question-input" name="question[0].question" placeholder="질문을 입력해주세요." maxlength="100"/>
+                                </div>
+                                <div class="question-type">
+                                    <label><input class="type-obj" name="question[0].question_type" value="obj" th:type="radio" checked/> 객관식</label>
+                                    <label><input class="type-sub" name="question[0].question_type" value="sub" th:type="radio"/> 주관식</label>
+                                    <label></label>
+                                </div>
+
+                                 <div class="image-cont" data-image-id = "0">
+                                     <img src="" class="image-preview" /><br>
+                                     <div class="delete-image">
+                                         삭제
+                                     </div>
+
+                                 </div>
+
+                                <div class="option">
+                                    <div class="obj-option-cont">
+                                        <div data-option-cont-id="0" class="new-option-cont">
+
+                                            <div class="obj-option" data-question-id="0">
+                                                <input th:type="radio" onclick="return false" />
+                                                <input class="option-input" placeholder="옵션을 입력해주세요." maxlength="50"/>
+                                                <div class="delete-option">×</div>
+                                            </div>
+
+                                        </div>
+                                        <div class="obj-option">
+                                            <div class="option-select">
+                                                <input th:type="radio" onclick="return false"/>
+                                                <span data-question-id="0" class="add-option">옵션 추가</span> 또는 <span class="add-etc">'기타' 추가</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="isM">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-menu">
+                                    <div class="add-image">
+                                        <label class="img-label"><input data-file-id="0" name="question[0].image" th:type="file" accept="image/*"/>사진 올리기</label>
+                                    </div>
+                                    <div class="delete-question">
+                                        질문 삭제
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="add-question question-btn">
+                            <span class="plus-icon">+</span>
+                        </div>
+
+                    </div>
+
+                    <!--  type = ArrayList<String>  -->
+                    <input th:name="options" class="option_hidden" th:type="hidden"  />
+
+                </form>
+            </div>
+        </div>
+
+        <div class="bottom-cont">
+            <div class="submit-btn bottom-btn" >
+                완료
+            </div>
+            <div class="cancel-btn bottom-btn">
+                취소
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

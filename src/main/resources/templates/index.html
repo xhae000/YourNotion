@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script th:src="@{/js/index.js}"></script>
+</head>
+<body>
+    <th:block th:replace="/common/header :: headerFragment"/>
+    <div class="cont">
+        <div>
+            <div class="count-box">
+                <div class="count-box-account">
+                    자유롭게 설문에 참여하세요
+                </div>
+                <div class="count-zone">
+                    현재 등록된 설문 개수 <span class="count">421</span>개
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <div class="menuType type-conduct">
+                    <span class="eng">Conduct</span>
+                    <div class="circle-bottom">설문 참여하기</div>
+                </div>
+                <div class="menuType type-make">
+                    <span class="eng">Make</span>
+                    <div class="circle-bottom">설문 생성하기</div>
+                </div>
+            </div>
+
+            <div class="survey-by-id">
+                <div class="doyouhaveid">
+                    설문 ID를 알고 계시나요?
+                </div>
+                <input placeholder="설문 ID" class="survey-id-input">
+                </input>
+                <div class="survey-id-info">
+                    설문 ID를 알고있으면 바로 이동할 수 있어요.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

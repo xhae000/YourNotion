@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script th:src="@{/js/security/join.js}"></script>
+
+  <link th:href = "@{css/security/join.css}" rel="stylesheet" />
+</head>
+<body>
+
+<th:block th:replace="/common/header :: headerFragment" />
+
+<div class="content-top">
+  <div class="join-title">
+    회원가입
+  </div>
+</div>
+<form th:action="@{/joinProc}" th:method="post">
+  <div class="input-box">
+    <div style="padding-bottom:5px;" class="input-name">
+      이메일
+    </div>
+    <input class="info-input email-input" th:type="text" name="email" placeholder="이메일" />
+    @ <input class="naver info-input"  value="naver.com" readonly />
+    <div class="mail-auth">
+      <div class="request-auth">
+        인증 요청!
+      </div>
+      <div class="auth-form">
+        <input class="key-input" placeholder="6자리 인증번호" maxlength=6/>
+        <div class="auth-btn auth-submit">
+          인증
+        </div>
+        <div class="auth-btn resend-key">
+          재전송
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="input-box">
+    <div class="input-name">
+      아이디
+    </div>
+    <input maxlength="16" class="id-input info-input" th:type="text" name="username" placeholder="1~16글자"/>
+    <div class="id-alert-box">이미 사용중인 아이디입니다.</div>
+  </div><br>
+  <div class="input-box">
+    <div class="input-name">
+      비밀번호
+    </div>
+    <input maxlength="32" class="pw-input info-input" th:type="password" name="pw" placeholder="1~32글자"/><br>
+  </div><br>
+
+  <div class="input-box">
+    <div class="input-name">
+      닉네임
+    </div>
+    <input maxlength="8" class="nickname-input info-input"   th:type="text" name="nickname" placeholder="1~8글자"/><br>
+  </div><br>
+  <div class="input-box">
+    <div class="input-name">
+      생년월일
+    </div>
+    <input class="age-input info-input" th:type="number" name="age" placeholder="YYMMDD(6자)"/><br>
+  </div><br>
+  <div class="input-box gender-box">
+    <div class="input-name">
+      성별
+    </div>
+    <div class="selectbox-zone">
+      <label>
+        <input id="male" th:type="radio" name="gender" value="male" />
+        남
+      </label>
+
+      <label>
+        <input id="female" th:type="radio" name="gender" value="female" />
+        여
+      </label><br>
+    </div>
+    <span></span>
+  </div><br>
+  <input class="submit-btn" th:type="submit" value="생성"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <link rel="stylesheet" th:href="@{/css/security/login.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script th:src="@{/js/security/login.js}"></script>
+
+    <script>
+        let input = document.querySelector('.pswrd');
+        let show = document.querySelector('.show');
+        show.addEventListener('click', active);
+        function active(){
+            if(input.type === "password"){
+                input.type = "text";
+                show.style.color = "#1DA1F2";
+                show.textContent = "HIDE";
+            }else{
+                input.type = "password";
+                show.textContent = "SHOW";
+                show.style.color = "#111";
+            }
+        }
+    </script>
+</head>
+<body>
+    <th:block th:replace="/common/header :: headerFragment" />
+
+    <div class="container">
+        <header>로그인</header>
+        <span class="form">
+            <div class="input-field">
+                <input class="username-input" name="username" required>
+                <label>아이디</label>
+            </div>
+            <div class="input-field">
+                <input name="pw" class="pswrd pw-input" th:type="password" required>
+                <label>비밀번호</label>
+            </div>
+            <div class="button">
+                <div class="inner"></div>
+                <button class="login-submit">로그인</button>
+            </div>
+        </span>
+
+        <div class="links">
+            <div class="facebook">
+                <i class="fab fa-facebook-square"><span>Facebook</span></i>
+            </div>
+            <div class="google">
+                <i class="fab fa-google-plus-square"><span>Google</span></i>
+            </div>
+        </div>
+        <div class="signup">
+            회원이 아니신가요? <a href="/join">계정 만들기</a>
+        </div>
+    </div>
+
+</body>
+</html>

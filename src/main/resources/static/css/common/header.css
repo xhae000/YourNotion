@@ -1,0 +1,64 @@
+/*header*/
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
+
+
+.top-bar{
+    padding:17px 11px;
+    border-bottom:0.1px solid #c5c5c5;
+
+    background-color : #ffffff;
+    color:#1c1c1c;
+    display:flex;
+    justify-content:space-between;
+    font-size:30px;
+    overflow:hidden;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.bar-title{
+    display:inline-block;
+    font-family: 'Oswald', sans-serif;
+    cursor:pointer;
+}
+
+.bar-menu{
+    display:inline-block;
+}
+
+.bar-status{
+    display:inline-block;
+    font-size:12px;
+    padding-top:5px;
+}
+
+.header-security{
+    cursor:pointer;
+    display:inline-block;
+    padding : 11px 23px;
+    border-radius:23px;
+}
+
+.login-btn{
+    border:0.1px solid #c5c5c5;
+    padding:11px 27px;
+}
+
+.join-btn{
+    color:white;
+    background-color: #457ee8;
+}
+
+.logout-btn{
+    border : 0.1px solid #f31a55;
+    color : #f31a55;
+}
+
+
+body{
+    margin-top:106px;
+}

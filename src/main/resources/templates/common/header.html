@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lagn="ko">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+
+
+  <div th:fragment="headerFragment" class="top-bar">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+      <script th:src="@{/js/common/header.js}"></script>
+      <link rel="stylesheet" th:href="@{/css/common/header.css}">
+
+    <div class="bar-title">
+
+      Your Notion
+    </div>
+    <div class="bar-menu">
+      메뉴
+    </div>
+    <div class="bar-status">
+        <div sec:authorize="isAnonymous()" >
+          <div class="header-security login-btn">
+              로그인
+          </div>
+          <div class="header-security join-btn">
+              회원가입
+          </div>
+        </div>
+
+        <div sec:authorize="isAuthenticated()">
+            <div class="header-security logout-btn">
+                로그아웃
+            </div>
+        </div>
+
+    </div>
+  </div>
+
+
+</body>
+</html>

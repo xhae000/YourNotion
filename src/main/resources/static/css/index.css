@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
+
+
+body{
+    margin:0;
+    text-align:center;
+}
+
+.cont{
+    text-align:center;
+    padding-bottom:29px;
+    padding-top:10px;
+}
+.content-cont{
+    display:inline-block;
+        width:900px;
+    text-align:center;
+    overflow:hidden;
+}
+
+.count-box{
+    height:250px;
+    font-family: 'Noto Sans KR', sans-serif;
+
+}
+
+.count-box-account{
+    font-size:54px;
+}
+
+.count-zone{
+    font-size:25px;
+    padding-top:59px;
+}
+
+.count{
+    display:inline-block;
+    font-size:29px;
+    padding-left:5px;
+    padding-right:2px;
+    color: rgba(70, 163, 255, 0.97);
+    font-weight: bolder;
+}
+
+.menuType{
+    cursor:pointer;
+    display:inline-block;
+    border:0.1px solid #c5c5c5;
+    padding-top:74px;
+    width:240px;
+    height:166px;
+    border-radius:60%;
+    transition:0.25s;
+
+}
+
+.menuType:hover{
+    color:white;
+    background-color: #2a2a2a;
+}
+
+.type-conduct{
+    margin-right:90px;
+}
+
+
+.circle-bottom{
+    font-family: 'Noto Sans KR', sans-serif;
+
+    padding-top:5px;
+}
+
+.eng{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size:40px;
+    margin-top:30px;
+}
+
+.survey-by-id{
+    font-family: 'Noto Sans KR', sans-serif;
+    padding-top:60px;
+}
+
+.doyouhaveid{
+    font-size:23px;
+}
+
+.survey-id-input{
+    border: 0.1px solid #c5c5c5;
+    width:240px;
+    height:30px;
+    margin-top:10px;
+    padding:13px;
+    border-radius:21px;
+    outline:none;
+}
+
+.survey-id-info{
+    color: #858585;
+    padding-top:11px;
+}

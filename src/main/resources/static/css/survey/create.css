@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+.cont{
+    display:inline-block;
+    width:900px;
+    overflow:hidden;
+    font-family: 'Nanum Gothic', sans-serif;
+
+}
+
+.title-cont{
+
+}
+
+input,textarea{
+    outline:none;
+    font-family: 'Nanum Gothic', sans-serif;
+
+}
+
+.title-input{
+    width:90%;
+    padding:15px;
+    border:none;
+    border-bottom :1.5px solid #c5c5c5;
+    margin-bottom:10px;
+    font-size:19px;
+    font-weight:bold;
+}
+
+.des-textarea{
+    resize:none;
+    width:90%;
+    border:0.1px solid #c5c5c5;
+    vertical-align:top;
+    height:190px;
+    padding: 15px 15px 0px 15px;
+    overflow:auto;
+}
+
+.info-cont{
+    display:flex;
+    justify-content:space-between;
+    margin-top:12px;
+
+}
+
+.gender-box{
+    display:inline-block;
+}
+
+.ph{
+    text-align:left;
+    padding-top:22px;
+    font-size:19px;
+    padding-left:30px;
+    margin-bottom:23px;
+    font-weight : bold;
+}
+
+.gender-cont{
+    text-align:left;
+    padding-left:33px;
+}
+
+input[name=gender]{
+    margin-bottom:14px;
+}
+
+.age-box{
+    display:inline-block;
+    padding-right:274px;
+    border-left : 0.1px solid #e6e6e6;
+}
+
+.age-cont{
+    padding-left:9px;
+    padding-top:2px;
+}
+
+input[type=number]{
+    border:none;
+    border-bottom:0.1px solid #c5c5c5;
+    padding: 0px 3px;
+    width:30px;
+    color:black;
+    text-align:center;
+}
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.question-cont{
+    border:0.1px solid #c5c5c5;
+    margin-top:25px;
+    border-radius:20px;
+    padding-bottom:30px;
+}
+
+.question-box{
+    border-top:1px solid #c5c5c5;
+    padding:25px;
+}
+
+.add-question{
+    text-align:center;
+}
+
+
+
+.question-btn{
+    margin-top:37px;
+}
+
+.plus-icon{
+    font-weight:bolder;
+    color:#A4A4A4;
+    border:0.1px solid #a4a4a4;
+    font-size:30px;
+    padding:5px 14px 7px 14px;
+    border-radius:60%;
+    cursor:pointer;
+    vertical-align:middle;
+
+}
+
+.question-input{
+    width:500px;
+    padding:15px;
+    font-size:17px;
+    border:none;
+    border-bottom:0.1px solid #c5c5c5;
+}
+
+.question-type{
+    padding-top:12px;
+}
+
+.option{
+    margin-bottom:15px;
+}
+
+.option-input{
+    display:inline-block;
+    border:none;
+    width:500px;
+    border-bottom:0.1px solid #c5c5c5;
+    padding:10px;
+    font-size:16px;
+    margin-left:9px;
+}
+
+.etc-input{
+    display:inline-block;
+    width:500px;
+    text-align:left;
+    font-size:16px;
+    color: #505050;
+    margin-left:9px;
+    padding:10px;
+}
+
+.obj-option-cont{
+    display:inline-block;
+}
+
+.obj-option{
+    padding-top:16px;
+}
+
+.etc-option{
+
+}
+
+.delete-option{
+    color:#1C1C1C;
+    display:inline-block;
+    font-size:34px;
+    cursor:pointer;
+}
+
+.add-option{
+    color:#585858;
+    cursor:pointer;
+    margin-top:10px;
+    margin-left:19px;
+}
+
+.add-etc{
+    color:#5F04B4;
+    cursor:pointer;
+
+}
+
+.option-select{
+    text-align:left;
+    padding-right:30px;
+    padding-top:10px;
+}
+
+
+.add-image{
+    display:inline-block;
+    margin-right : 11px;
+    color:grey;
+}
+.delete-question{
+    display:inline-block;
+    margin-left : 11px;
+    color: #d30000;
+    cursor:pointer;
+}
+
+input[type=file]{
+    visibility: hidden;
+    width:0px;
+
+}
+
+.img-label{
+    cursor:pointer;
+}
+.image-cont{
+    display : none;
+
+}
+.image-preview{
+    width : 500px;
+    max-height:600px;
+    margin-top : 27px ;
+}
+
+.image-btn{
+    display:inline-block;
+    padding:9px 15px;
+    color:white;
+    background-color : #1d61fa;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.edit-image-label{
+    color : #6E6E6E;
+    cursor:pointer;
+    margin-right: 7px;
+}
+
+.delete-image{
+    display:inline-block;
+    color: #d30000;
+    cursor:pointer;
+    margin-left:7px;
+}
+
+.bottom-cont{
+    margin-bottom:25px;
+
+}
+.bottom-btn{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius: 10px;
+    margin : 6px;
+    cursor:pointer;
+}
+
+.submit-btn{
+    background-color: #00e005;
+    color:white;
+}
+
+.cancel-btn{
+    background-color : #818181;
+    color:white;
+}
