@@ -50,7 +50,7 @@ public class JwtFilter extends GenericFilterBean {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("token")) // 토큰 정보가 담긴 쿠키 찾기
                     return cookie.getValue();
-            }   
+            }
         return null;
     }
 
