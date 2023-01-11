@@ -9,4 +9,5 @@ import lombok.*;
 public class LoginDTO {
     String username;
     String pw;
+    String redirect;
 }

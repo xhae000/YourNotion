@@ -25,22 +25,15 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("lbun== =======");
-
         Optional<UserEntity> optionalUserEntity =
                 userRepository.findByUsername(username);
 
-
-
-        System.out.println(optionalUserEntity.get().toString());
         return optionalUserEntity
                 .map(user -> createUser(username, user)) // 입력받은 username에 해당하는 사용자가 있다면, 내가만든 userdetails 객체를 생성한다.
                 .orElseThrow(()->new UsernameNotFoundException(username)); // 없다면 null을 반환한다. (인증 실패)
     }
 
     private User createUser(String username, UserEntity userEntity){
-        System.out.println("create User"+username);
-
         List<GrantedAuthority> grantedAuthority =
                 Collections.singletonList(new SimpleGrantedAuthority(userEntity.getRole()));
 

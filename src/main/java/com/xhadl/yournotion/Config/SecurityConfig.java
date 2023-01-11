@@ -1,5 +1,6 @@
 package com.xhadl.yournotion.Config;
 
+import com.xhadl.yournotion.ErrorHandler.CustomAuthenticationEntryPoint;
 import com.xhadl.yournotion.Jwt.JwtAccessDeniedHandler;
 import com.xhadl.yournotion.Jwt.JwtAuthenticationEntryPoint;
 import com.xhadl.yournotion.Jwt.JwtFilter;
@@ -21,7 +22,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -59,6 +59,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers(("/login")).anonymous()
                 .antMatchers(("/loginProc")).anonymous()
+                .antMatchers(("/logoutProc")).authenticated()
                 .antMatchers("/join").anonymous()
                 .antMatchers("/survey/create").authenticated()
                 .antMatchers("/survey/createProc").authenticated()
@@ -67,18 +68,14 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
 
                 .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logoutProc"))
-                .logoutSuccessUrl("/")
-
-                .and()
                 .apply(new JwtConig(tokenProvider))
 
                 //401, 403 error
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .accessDeniedHandler(jwtAccessDeniedHandler);
+                .accessDeniedHandler(jwtAccessDeniedHandler)
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
 
         return http.build();
     }

@@ -34,9 +34,10 @@
         </div>
 
         <div sec:authorize="isAuthenticated()">
-            <div class="header-security logout-btn">
-                로그아웃
-            </div>
+
+                <form th:method="post" th:action = "@{/logoutProc}" >
+                        <input class="header-security logout-btn" th:type="submit" value="로그아웃" />
+                </form>
         </div>
 
     </div>

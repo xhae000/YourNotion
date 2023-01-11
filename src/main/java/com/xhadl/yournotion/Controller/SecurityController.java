@@ -1,20 +1,18 @@
 package com.xhadl.yournotion.Controller;
 
 import com.xhadl.yournotion.DTO.LoginDTO;
-import com.xhadl.yournotion.DTO.TokenDTO;
 import com.xhadl.yournotion.DTO.UserDTO;
 import com.xhadl.yournotion.Entity.UserEntity;
 import com.xhadl.yournotion.Service.UserService;
 import com.xhadl.yournotion.Validator.CommonValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
@@ -37,18 +35,26 @@ public class SecurityController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login(
+            @RequestParam(value="request", required = false)String requestUri,
+            HttpServletRequest request,
+            Model model) {
+        //uri
+        String redirect = userService.setLogin(requestUri, request);
+        model.addAttribute("redirect",redirect);
+
         return "/security/login";
     }
 
 
     @PostMapping("/loginProc")
     @ResponseBody
-    public ResponseEntity<TokenDTO> loginProc(
-            @RequestBody LoginDTO userInfo,
-            HttpServletResponse response
+    public String loginProc(
+            @RequestBody LoginDTO loginDTO,
+            HttpServletResponse response,
+            HttpServletRequest request
     ) {
-        return userService.login(userInfo, authenticationManagerBuilder, response);
+        return userService.login(loginDTO, authenticationManagerBuilder, response,request);
     }
 
     @GetMapping("/join")
@@ -58,6 +64,7 @@ public class SecurityController {
 
     @PostMapping("/joinProc")
     public String joinProc(UserDTO userDTO) {
+
         // 비밀번호 암호화 전에 유효성 검사부터
         if (!commonValidator.validate(userDTO.getPw(), 1, 32))
             return "redirect:/";
@@ -72,26 +79,19 @@ public class SecurityController {
     @PostMapping("/isUsingUsername")
     @ResponseBody
     public Boolean isUsingUsername(@RequestParam("username") String username) {
+
         Optional<UserEntity> optionalUserEntity =
                 userService.getOptionalUserInfoByUsername(username);
-
 
         return !optionalUserEntity.isEmpty();
     }
 
-    /* 개발 중 테스트를 위해 임시로 생성하는 쿠키 삭제 기능*/
-    @GetMapping("/delcookie")
-    public String delCookie(HttpServletRequest request, HttpServletResponse response) {
-        for (Cookie c : request.getCookies()) {
-            if (c.getName().equals("token")) {
-                c.setMaxAge(0);
-                response.addCookie(c);
+    @PostMapping("/logoutProc")
+    @DisplayName("로그아웃 (토큰 삭제)")
+    public String logoutProc(HttpServletRequest request, HttpServletResponse response) {
 
-                System.out.println(c.getName() + " 쿠키 삭제");
-            }
-        }
-
-        return "redirect:/login";
+        String redirectUri = userService.logout(request, response);
+        return "redirect:"+redirectUri;
     }
     /*
     * putmapping, patchmapping 차이 :

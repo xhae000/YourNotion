@@ -59,13 +59,17 @@ public class TokenProvider implements InitializingBean { /* InitializingBean을 
         Header header = Jwts.header();
         header.setType("JWT");
 
-        return Jwts.builder()
+        String token = Jwts.builder()
                 .setHeader((Map<String, Object>) header)
                 .setSubject(authentication.getName())
                 .claim(AUTHORITES_KEY, authorites)
                 .signWith(key, SignatureAlgorithm.HS512)
                 .setExpiration(validity)
                 .compact();
+
+        System.out.println("Login Success. Created Token : "+token);
+
+        return token;
     }
 
     public Authentication getAuthentication(String token) {

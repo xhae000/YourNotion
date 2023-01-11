@@ -11,7 +11,6 @@ public class IndexController {
 
     @Autowired
     SurveyService surveyService;
-
     @Autowired
     TestRepository testRepository;
 

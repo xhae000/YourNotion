@@ -151,3 +151,12 @@ input:valid ~ label{
 .signup a:hover{
     text-decoration: underline;
 }
+
+.alert-cont{
+    color: #e53939;
+    padding-top:22px;
+    font-weight:bold;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size:16px;
+    display:none;
+}

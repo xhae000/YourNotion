@@ -1,7 +1,6 @@
 package com.xhadl.yournotion.ServiceImpl;
 
 import com.xhadl.yournotion.DTO.LoginDTO;
-import com.xhadl.yournotion.DTO.TokenDTO;
 import com.xhadl.yournotion.DTO.UserDTO;
 import com.xhadl.yournotion.Entity.UserEntity;
 import com.xhadl.yournotion.Jwt.TokenProvider;
@@ -11,8 +10,6 @@ import com.xhadl.yournotion.Validator.UserValidator;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -21,7 +18,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -47,23 +46,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void joinUser(UserDTO user){
         if(!userValidator.validate(user)) return;
 
         UserEntity userEntity = modelMapper.map(user, UserEntity.class);
-
         userRepository.save(userEntity);
     }
 
-    public ResponseEntity<TokenDTO> login(
+    @Override
+    public String login(
             LoginDTO userInfo,
             AuthenticationManagerBuilder authenticationManagerBuilder,
-            HttpServletResponse response){
+            HttpServletResponse response,
+            HttpServletRequest request){
+
         UsernamePasswordAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(userInfo.getUsername(), userInfo.getPw());
+        Authentication authentication;
 
+        try {
+            authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        }catch(Exception e) {
+            System.out.println("Login failed");
+            return null;
+        }
 
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwtToken = tokenProvider.createToken(authentication);
@@ -72,8 +80,41 @@ public class UserServiceImpl implements UserService {
         response.addCookie(tokenCookie);
 
 
-        return new ResponseEntity<>(new TokenDTO(jwtToken), HttpStatus.OK);
+        return userInfo.getRedirect();
     }
 
+    @Override
+    public String logout(HttpServletRequest request, HttpServletResponse response){
+        String referer = request.getHeader("referer");
+
+        // 프론트엔드의 토큰 삭제
+        for (Cookie c : request.getCookies()) {
+            if (c.getName().equals("token")) {
+                c.setMaxAge(0);
+                response.addCookie(c);
+            }
+        }
+        // 이전에 왔던 페이지로 돌려보내기
+        return referer != null ? referer.replaceAll("http://localhost8080","") : "/";
+    }
+
+    @Override
+    public String setLogin(String requestUri, HttpServletRequest request){
+        String redirect;
+        // 이전페이지 uri
+        String referer = request.getHeader("referer");
+
+        /* 401 unauthorized 에러를 통해 로그인 페이지에 들어온 유저라면 기존에 가려했던 url로 보내고
+           로그인 버튼 눌러서 온 유저는 이전 페이지로 보냄
+        * */
+        if (requestUri != null)
+            redirect = requestUri;
+        else if(referer != null && !referer.contains("/login"))
+            redirect = referer.replaceAll("http://localhost:8080","");
+        else // 처음으로 방문한 페이지가 로그인 페이지라면 referer header 없음
+            redirect = "/";
+
+        return redirect;
+    }
 
 }
