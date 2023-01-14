@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface SurveyService {
     public SurveyDTO findById(int id);
-
     public Integer createSurvey(SurveyDTO survey, QuestionListDTO questions, List<String> options) throws IOException;
-
+    public int getSurveyCount();
 }

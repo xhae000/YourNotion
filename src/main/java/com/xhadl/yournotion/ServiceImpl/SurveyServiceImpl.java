@@ -110,4 +110,9 @@ public class SurveyServiceImpl implements SurveyService {
         return survey_id;
     }
 
+    @Override
+    public int getSurveyCount(){
+        return surveyRepository.countBy();
+    }
+
 }
