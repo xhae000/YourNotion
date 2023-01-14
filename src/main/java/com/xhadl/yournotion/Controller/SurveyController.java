@@ -30,9 +30,12 @@ public class SurveyController {
              QuestionListDTO question,
              @RequestParam(value="options") List<String> options
     ) throws IOException {
-
         System.out.println(surveyService.createSurvey(survey, question, options));
-
         return "redirect:/";
+    }
+
+    @GetMapping("/surveyList")
+    public String surveyList(){
+        return "/survey/surveyList";
     }
 }
