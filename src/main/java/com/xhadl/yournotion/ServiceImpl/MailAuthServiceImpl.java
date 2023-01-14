@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -22,6 +23,7 @@ public class MailAuthServiceImpl implements MailAuthService {
 
     @Override
     @DisplayName("In join proc")
+    @Transactional
     public String setMailAuth(String mail) throws Exception {
         // input validate
         if (!mailValidator.validate_email(mail)) return "error";
