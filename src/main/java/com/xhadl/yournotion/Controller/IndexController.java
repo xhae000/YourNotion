@@ -4,6 +4,7 @@ import com.xhadl.yournotion.Redis.TestRepository;
 import com.xhadl.yournotion.Service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -15,7 +16,8 @@ public class IndexController {
     TestRepository testRepository;
 
     @RequestMapping("/")
-    public String index(){
+    public String index(Model model){
+        model.addAttribute("surveyCount",surveyService.getSurveyCount());
         return "/index";
     }
 }
