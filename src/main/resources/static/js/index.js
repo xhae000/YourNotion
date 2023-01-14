@@ -3,7 +3,7 @@ $(document).ready(function(){
        location.href = "/survey/create";
     });
     $('.type-conduct').click(function(){
-        location.href = "/survey/surveylist";
+        location.href = "/surveyList";
     });
 
 });
