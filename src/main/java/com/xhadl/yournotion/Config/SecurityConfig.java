@@ -1,5 +1,6 @@
 package com.xhadl.yournotion.Config;
 
+import com.xhadl.yournotion.ErrorHandler.CustomAccessDeniedHandler;
 import com.xhadl.yournotion.ErrorHandler.CustomAuthenticationEntryPoint;
 import com.xhadl.yournotion.Jwt.JwtAccessDeniedHandler;
 import com.xhadl.yournotion.Jwt.JwtAuthenticationEntryPoint;
@@ -75,7 +76,9 @@ public class SecurityConfig {
                 .exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .accessDeniedHandler(jwtAccessDeniedHandler)
-                .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
+
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+                .accessDeniedHandler(new CustomAccessDeniedHandler());
 
         return http.build();
     }
