@@ -10,23 +10,6 @@
     <script th:inline="javascript">const redirect = [[${redirect}]] </script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script th:src="@{/js/security/login.js}"></script>
-
-    <script>
-        let input = document.querySelector('.pswrd');
-        let show = document.querySelector('.show');
-        show.addEventListener('click', active);
-        function active(){
-            if(input.type === "password"){
-                input.type = "text";
-                show.style.color = "#1DA1F2";
-                show.textContent = "HIDE";
-            }else{
-                input.type = "password";
-                show.textContent = "SHOW";
-                show.style.color = "#111";
-            }
-        }
-    </script>
 </head>
 <body>
     <th:block th:replace="/common/header :: headerFragment" />
