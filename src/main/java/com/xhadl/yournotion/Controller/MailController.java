@@ -15,7 +15,6 @@ public class MailController {
 
     @PostMapping("/mail/sendMail")
     public String sendMail_ToJoin(@RequestParam(value="email") String mail) throws Exception {
-
         //using or ok
         return mailAuthService.setMailAuth(mail);
     }
