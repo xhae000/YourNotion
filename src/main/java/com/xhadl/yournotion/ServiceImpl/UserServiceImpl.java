@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService {
     public String logout(HttpServletRequest request, HttpServletResponse response){
         String referer = request.getHeader("referer");
 
-        // 프론트엔드의 토큰 삭제
+        // 클라이언트에서의 토큰 삭제
         for (Cookie c : request.getCookies()) {
             if (c.getName().equals("token")) {
                 c.setMaxAge(0);
@@ -109,7 +109,7 @@ public class UserServiceImpl implements UserService {
         * */
         if (requestUri != null)
             redirect = requestUri;
-        else if(referer != null && !referer.contains("/login"))
+        else if(referer != null)
             redirect = referer.replaceAll("http://localhost:8080","");
         else // 처음으로 방문한 페이지가 로그인 페이지라면 referer header 없음
             redirect = "/";
