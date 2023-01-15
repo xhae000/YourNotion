@@ -2,12 +2,15 @@ package com.xhadl.yournotion.ServiceImpl;
 
 import com.xhadl.yournotion.DTO.LoginDTO;
 import com.xhadl.yournotion.DTO.UserDTO;
+import com.xhadl.yournotion.Entity.SurveyAvailableEntity;
 import com.xhadl.yournotion.Entity.UserEntity;
 import com.xhadl.yournotion.Jwt.TokenProvider;
+import com.xhadl.yournotion.Repository.SurveyAvailableRepository;
 import com.xhadl.yournotion.Repository.UserRepository;
 import com.xhadl.yournotion.Service.UserService;
 import com.xhadl.yournotion.Validator.UserValidator;
 import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.api.DisplayName;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,6 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -29,13 +33,15 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
+    private SurveyAvailableRepository surveyAvailableRepository;
+    @Autowired
     private ModelMapper modelMapper;
     @Autowired
     private UserValidator userValidator;
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
     @Autowired
-    TokenProvider tokenProvider;
+    private TokenProvider tokenProvider;
 
 
 
@@ -115,6 +121,17 @@ public class UserServiceImpl implements UserService {
             redirect = "/";
 
         return redirect;
+    }
+
+    @Override
+    @DisplayName("설문 참여 자격 판단을 위해 view에 유저의 나이와 성별 전달")
+    public void addAgeGenderModel(Model model,Authentication auth){
+        if (auth != null) { // 회원
+            SurveyAvailableEntity userInfo = surveyAvailableRepository.findByUsername(auth.getName());
+
+            model.addAttribute("user_age", userInfo.getFormatAge());
+            model.addAttribute("user_gender", userInfo.getGender());
+        }
     }
 
 }
