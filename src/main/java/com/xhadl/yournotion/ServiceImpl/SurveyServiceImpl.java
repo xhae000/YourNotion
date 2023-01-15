@@ -6,16 +6,15 @@ import com.xhadl.yournotion.DTO.SurveyDTO;
 import com.xhadl.yournotion.Entity.OptionEntity;
 import com.xhadl.yournotion.Entity.QuestionEntity;
 import com.xhadl.yournotion.Entity.SurveyEntity;
-import com.xhadl.yournotion.Repository.OptionRepository;
-import com.xhadl.yournotion.Repository.QuestionRepository;
-import com.xhadl.yournotion.Repository.SurveyRepository;
-import com.xhadl.yournotion.Repository.UserRepository;
+import com.xhadl.yournotion.Formatter.SurveyListFormatter;
+import com.xhadl.yournotion.Repository.*;
 import com.xhadl.yournotion.Service.SurveyService;
 import com.xhadl.yournotion.Validator.OptionValidator;
 import com.xhadl.yournotion.Validator.QuestionValidator;
 import com.xhadl.yournotion.Validator.SurveyValidator;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -23,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SurveyServiceImpl implements SurveyService {
@@ -32,6 +32,12 @@ public class SurveyServiceImpl implements SurveyService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
+    private QuestionRepository questionRepository;
+    @Autowired
+    private OptionRepository optionRepository;
+    @Autowired
+    private SurveyParticipantRepository surveyParticipantRepository;
+    @Autowired
     private ModelMapper modelMapper;
     @Autowired
     private QuestionValidator questionValidator;
@@ -39,25 +45,35 @@ public class SurveyServiceImpl implements SurveyService {
     private OptionValidator optionValidator;
     @Autowired
     private SurveyValidator surveyValidator;
-    @Autowired
-    private QuestionRepository questionRepository;
-    @Autowired
-    private OptionRepository optionRepository;
 
+    @Autowired
+    SurveyListFormatter timeFormatter;
 
 
     @Override
     public SurveyDTO findById(int id){
         SurveyEntity surveyEntity = surveyRepository.findById(id);
-        System.out.println(surveyEntity.getTitle());
-
         SurveyDTO surveyDTO = modelMapper.map(surveyEntity, SurveyDTO.class);
-        System.out.println(surveyDTO.toString());
 
         return surveyDTO;
     }
 
 
+    @Override
+    public List<SurveyDTO> getSurveyList(Pageable pageable){
+        List<SurveyEntity> surveyEntities = surveyRepository.findAllByOrderByIdDesc(pageable).getContent();
+        List<SurveyDTO> surveys = surveyEntities.stream()
+                .map(p -> modelMapper.map(p, SurveyDTO.class)).collect(Collectors.toList());
+
+        // 정보 포맷
+        for(SurveyDTO survey : surveys) {
+            int count = surveyParticipantRepository.countBySurveyId(survey.getId());
+            survey.formatForSurveyList(timeFormatter, count);
+        }
+        return surveys;
+    }
+
+/* 주관식 객관식 처리필요*/
     @Override
     public Integer createSurvey(SurveyDTO survey, QuestionListDTO questions, List<String> options) throws IOException {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

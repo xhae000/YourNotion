@@ -6,10 +6,39 @@
     <title>설문 참여하기</title>
     <link rel="stylesheet" th:href="@{/css/survey/surveyList.css}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script th:inline="javascript">
+        const age = Number([[${user_age}]])
+        const gender = [[${user_gender}]]
+    </script>
+
     <script th:src="@{/js/survey/surveyList.js}"></script>
 </head>
 <body>
     <th:block th:replace="/common/header :: headerFragment"/>
+    <div>
+        <div class="survey-list-cont">
+                <div th:each="survey : ${surveys}" class="survey-cont">
+                    <div th:text="${survey.category}" class="survey-category" ></div>
 
+                    <div th:text="${survey.title}" class="survey-title"></div>
+
+                    <div th:text="${survey.format_age}" class="survey-age"></div>
+
+                    <div th:text="${survey.format_gender}" class="survey-gender"></div>
+
+                    <div th:text="${survey.format_time}" class="survey-session"></div>
+
+                    <div th:text="${survey.participants}" class="survey-participants"></div>
+
+                    <div class="survey-btn-cont">
+                        <div th:attr="data-id=${survey.id},data-is-in-session=${survey.isInSession}, data-gender=${survey.gender}, data-start-age=${survey.start_age}, data-end-age=${survey.end_age}" class="survey-btn">
+                            설문 참여하기
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+    </div>
 </body>
 </html>
