@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap');
+
+body{
+    text-align:center;
+    padding-bottom:50px;
+}
+.survey-list-cont{
+    overflow : hidden;
+    display:inline-block;
+    width: 1300px;
+    text-align:center;
+}
+
+.survey-cont{
+    display:inline-block;
+    width : 430px;
+    border : 0.1px solid #c5c5c5;
+    padding:25px 25px 0px 25px;
+    margin : 7px;
+    text-align:left;
+}
+
+.survey-category{
+    border-bottom:0.1px solid #525252;
+    padding-bottom:3px;
+    margin-bottom : 7px;
+    font-family: 'Black Han Sans', sans-serif;
+    font-size:23px;
+}
+
+.survey-title{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size:24px;
+    margin-top : 12px;
+    margin-bottom:31px;
+}
+
+.survey-session{
+    font-family: 'Nanum Gothic', sans-serif;
+    color : #818181;
+    margin-bottom:4px;
+}
+
+.survey-age{
+    color : #818181;
+    font-family: 'Nanum Gothic', sans-serif;
+    margin-bottom:4px;
+}
+
+.survey-gender{
+    color : #818181;
+    font-family: 'Nanum Gothic', sans-serif;
+    margin-bottom:12px
+}
+
+.survey-participants{
+    color : #818181;
+    font-family: 'Nanum Gothic', sans-serif;
+    margin-bottom:23px;
+
+}
+
+.survey-btn{
+    font-family: 'Nanum Gothic', sans-serif;
+    background-color : #188BF8;
+    color: white;
+    text-align:center;
+    margin:13px 0px;
+    padding:13px;
+    border-radius:30px;
+    cursor:pointer;
+}
