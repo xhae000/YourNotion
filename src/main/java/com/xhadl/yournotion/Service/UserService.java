@@ -20,4 +20,5 @@ public interface UserService {
                                           HttpServletResponse responsem, HttpServletRequest request);
     public String logout(HttpServletRequest request, HttpServletResponse response);
     public void addAgeGenderModel(Model model, Authentication auth);
+    public String findNicknameById(int userId);
 }

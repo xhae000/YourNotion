@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -47,5 +48,16 @@ public class SurveyController {
         userService.addAgeGenderModel(model, auth);
 
         return "/survey/surveyList";
+    }
+
+    @GetMapping("/survey/{id}")
+    public String surveyDetail(@PathVariable int id, Model model){
+        SurveyDTO survey = surveyService.findById(id);
+        String makerNickname = userService.findNicknameById(survey.getMaker_id());
+
+        model.addAttribute("survey",survey);
+        model.addAttribute("maker_nickname",makerNickname);
+
+        return "/survey/detail";
     }
 }

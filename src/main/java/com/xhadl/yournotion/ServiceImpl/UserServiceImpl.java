@@ -134,4 +134,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public String findNicknameById(int userId){
+        return userRepository.findById(userId).getNickname();
+    }
+
 }
