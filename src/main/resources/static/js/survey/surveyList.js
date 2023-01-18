@@ -5,7 +5,6 @@ $(document).ready(function(){
                   if($(this).data("is-in-session") == false){
                         $(this)
                             .css('background-color','#adadad')
-                            .css('cursor','default')
                             .text("참여 기간이 지난 설문입니다");
 
                         return;
@@ -29,9 +28,12 @@ $(document).ready(function(){
                   if (!isAvailable) { // 참여할 수 없는 설문일 때 (성별조건, 나이조건에 의해)
                         $(this)
                             .css('background-color','#8BB7FF')
-                            .css('cursor','default')
                             .text("설문 대상이 아닙니다");
                   }
             });
 
+
+            $('.survey-btn').click(function(){
+                  location.href = "/survey/"+$(this).data('id');
+            });
 });
