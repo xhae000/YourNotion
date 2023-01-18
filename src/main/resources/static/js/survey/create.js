@@ -252,9 +252,7 @@ $(document).ready(function(){
             $('.option-input').each(function(i,o){
                 var qId = $(o).parent().data('question-id');
 
-                if(isEmpty($(o).val()) &&
-                    $(o).parent().css('display')!="none"
-                    ){
+                if(isEmpty($(o).val()) && $(o).parent().css('display')!="none") {
                     // 주관식이면 옵션 입력 없음
 
                     alert("옵션을 입력해주세요.");
@@ -263,8 +261,12 @@ $(document).ready(function(){
 
                     return;
                 }
+                else if ($(o).parent().css('display')=="none") { // 주관식일 때
+                    // 주관식은 어쩌피 옵션 안쓰니깐, 빈 옵션 추가
+                    $(o).val("sub_option");
+                }
 
-                // [1, 질문, 1, 질문, 2, 질문]
+                // [1, 질문, 1, 질문, 2, 질문 ...]
                 option_li.push(qId);
                 option_li.push($(o).val());
             });
