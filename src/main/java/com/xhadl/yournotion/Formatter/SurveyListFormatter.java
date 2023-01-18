@@ -40,7 +40,7 @@ public class SurveyListFormatter {
         else isInSession = "false";
 
         map.put("isInSession",isInSession);
-        map.put("formatSession","조사 기간 :"+startSession+" ~ "+endSession);
+        map.put("formatSession","조사 기간 : "+startSession+" ~ "+endSession);
 
         return map;
     }
