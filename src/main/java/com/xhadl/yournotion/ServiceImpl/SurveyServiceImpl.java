@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,9 +54,7 @@ public class SurveyServiceImpl implements SurveyService {
     @Override
     public SurveyDTO findById(int id){
         SurveyEntity surveyEntity = surveyRepository.findById(id);
-        SurveyDTO surveyDTO = modelMapper.map(surveyEntity, SurveyDTO.class);
-
-        return surveyDTO;
+        return modelMapper.map(surveyEntity, SurveyDTO.class);
     }
 
 
@@ -131,4 +130,15 @@ public class SurveyServiceImpl implements SurveyService {
         return surveyRepository.countBy();
     }
 
+    @Override
+    public void setSurveyDetail(Model model, int id){
+        SurveyDTO survey = findById(id);
+        survey.formatForSurveyList(timeFormatter, surveyParticipantRepository.countBySurveyId(survey.getId()));
+
+        model.addAttribute("isInSession", timeFormatter.formatSession(survey.getTime()).get("isInSession"));
+        model.addAttribute("isAvailable", surveyValidator.isAvailable(survey).toString());
+        model.addAttribute("survey",survey);
+        model.addAttribute("maker_nickname",userRepository.findById(survey.getMaker_id()).getNickname());
+        model.addAttribute("question_cnt", questionRepository.countBySurveyId(id));
+    }
 }

@@ -2,6 +2,7 @@ package com.xhadl.yournotion.Controller;
 
 import com.xhadl.yournotion.DTO.QuestionListDTO;
 import com.xhadl.yournotion.DTO.SurveyDTO;
+import com.xhadl.yournotion.Entity.SurveyAvailableEntity;
 import com.xhadl.yournotion.Service.SurveyService;
 import com.xhadl.yournotion.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,20 +45,18 @@ public class SurveyController {
 
     @GetMapping("/surveyList")
     public String surveyList(@PageableDefault(size=10) Pageable pageable, Model model, Authentication auth){
+        SurveyAvailableEntity userInfo = userService.addAgeGenderModel(auth);
+
+        model.addAttribute("user_age", userInfo.getFormatAge());
+        model.addAttribute("user_gender", userInfo.getGender());
         model.addAttribute("surveys", surveyService.getSurveyList(pageable));
-        userService.addAgeGenderModel(model, auth);
 
         return "/survey/surveyList";
     }
 
     @GetMapping("/survey/{id}")
-    public String surveyDetail(@PathVariable int id, Model model){
-        SurveyDTO survey = surveyService.findById(id);
-        String makerNickname = userService.findNicknameById(survey.getMaker_id());
-
-        model.addAttribute("survey",survey);
-        model.addAttribute("maker_nickname",makerNickname);
-
+    public String surveyDetail(@PathVariable int id, Model model, Authentication auth){
+        surveyService.setSurveyDetail(model , id);
         return "/survey/detail";
     }
 }
