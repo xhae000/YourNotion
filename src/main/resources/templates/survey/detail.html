@@ -5,11 +5,69 @@
     <title>[[${survey.title}]]</title>
 
     <link rel="stylesheet" th:href="@{/css/survey/detail.css}" />
+    <script>
+        const surveyId = "[[${survey.id}]]";
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <script th:src="@{/js/survey/detail.js}"></script>
 </head>
-<body>
+<th:block th:replace="/common/header :: headerFragment"/>
 
+<body style="margin-top : 78px;">
+    <div class="cont">
+        <div class="top-box">
+            <div>
+                <div class="category-cont" th:text="${survey.category}"></div>
+                <div class="title-cont">
+                    | <span th:text="${survey.title}"></span>
+                </div><br>
+                <div class="info-cont">
+                    <div class="flex-cont">
+                        <div>
+                            <div class="status-cont">
+                                상태 : <span th:if="${isInSession == 'true'}" th:text="진행중" class="status-available">
+                                      </span>
+
+                                      <span th:if="${isInSession == 'false'}" th:text="마감됨" class="status-unavailable">
+                                      </span>
+                            </div>
+                            <div class="age-cont" th:text="${survey.format_age}"></div>
+                            <div class="gender-cont" th:text="${survey.format_gender}"></div>
+                            <div class="question-cnt-cont">
+                                질문수 : <span th:text="${question_cnt}"></span>개
+                            </div>
+                            <div class="maker-cont">
+                                만든이 : <span th:text="${maker_nickname}"></span>
+                            </div>
+                        </div>
+                        <div>
+                            <div th:if="${isAvailable == 'true'}" class="do-btn">
+                                참여하기
+                            </div>
+                            <div th:if="${isAvailable == 'false'}" class="unable-btn">
+                                참여할 수 없습니다
+                            </div>
+                            <br>
+                            <div class="want-btn">
+                                관심목록에 추가하기
+                            </div><BR>
+                            <div class="report">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="content-box">
+            <h1>설명</h1>
+            <div class="des-cont" th:text="${survey.des}"></div>
+            <h1 style="padding-top:35px;">설문 결과</h1>
+            <div class="result-cont">
+
+            </div>
+        </div>
+    </div>
 </body>
 </html>

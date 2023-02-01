@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+
+body{
+    margin : 0;
+
+}
+.cont{
+    text-align:center;
+}
+
+.box{
+    width:600px;
+    display:inline-block;
+}
+
+.top-box{
+    background-color : #002333;
+    color : #ffffff;
+    padding:35px;
+}
+
+.category-cont{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight : bolder;
+    font-size : 30px;
+    display:inline-block;
+}
+
+.title-cont{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size : 30px;
+    display:inline-block;
+}
+
+.info-cont{
+    font-family: 'Noto Sans KR', sans-serif;
+    width:500px;
+    margin-top:40px;
+    text-align : left;
+    display : inline-block;
+}
+
+.status-available{
+    color:#31B404;
+}
+.status-unavailable{
+    color : #c5c4c4;
+}
+
+.age-cont{
+    margin-top:7px;
+}
+.gender-cont{
+    margin-top:7px;
+}
+.question-cnt-cont{
+    margin-top:25px;
+}
+.maker-cont{
+    margin-top:7px;
+
+}
+
+.flex-cont{
+    display:flex;
+    justify-content:space-between;
+}
+
+.do-btn{
+    margin-top:20px;
+    display:inline-block;
+    background-color: #00c471;
+    color:#ffffff;
+    padding : 17px 70px;
+    font-size:15px;
+    border-radius : 5px;
+    font-weight : bold;
+    cursor:pointer;
+}
+
+.unable-btn{
+    margin-top:20px;
+    display:inline-block;
+    background-color: #81e8b9;
+    color:#ffffff;
+    padding : 17px 40px;
+    font-size:15px;
+    border-radius : 5px;
+    font-weight : bold;
+}
+
+.want-btn{
+    margin-top:6px;
+    display:inline-block;
+    background-color: #ffffff;
+    color:black;
+    padding : 17px 34px;
+    font-size:15px;
+    border-radius : 5px;
+    font-weight : bold;
+    cursor:pointer;
+}
+
+h1{
+    border-bottom:0.1px solid #c5c5c5;
+    text-align:left;
+    padding-bottom:12px;
+    font-family: 'Noto Sans KR', sans-serif;
+
+}
+.content-box{
+    width:800px;
+    display:inline-block;
+}
+
+.des-cont{
+    font-family: 'Noto Sans KR', sans-serif;
+    text-align:left;
+    padding : 0px 10px;
+}
