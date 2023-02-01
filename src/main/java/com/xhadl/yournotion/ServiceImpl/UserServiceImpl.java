@@ -19,7 +19,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -125,18 +124,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @DisplayName("설문 참여 자격 판단을 위해 view에 유저의 나이와 성별 전달")
-    public void addAgeGenderModel(Model model,Authentication auth){
-        if (auth != null) { // 회원
-            SurveyAvailableEntity userInfo = surveyAvailableRepository.findByUsername(auth.getName());
+    public SurveyAvailableEntity addAgeGenderModel(Authentication auth){
+        return surveyAvailableRepository.findByUsername(auth.getName());
 
-            model.addAttribute("user_age", userInfo.getFormatAge());
-            model.addAttribute("user_gender", userInfo.getGender());
-        }
-    }
-
-    @Override
-    public String findNicknameById(int userId){
-        return userRepository.findById(userId).getNickname();
     }
 
 }
