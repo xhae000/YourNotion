@@ -62,8 +62,7 @@ public class SecurityConfig {
                 .antMatchers(("/loginProc")).anonymous()
                 .antMatchers(("/logoutProc")).authenticated()
                 .antMatchers("/join").anonymous()
-                .antMatchers("/survey/create").authenticated()
-                .antMatchers("/survey/createProc").authenticated()
+                .antMatchers("/survey/**").authenticated()
                 .antMatchers("/joinProc").anonymous()    // LoadBalancer Chk
                 .antMatchers("/admin").hasAuthority("ROLE_ADMIN")
                 .anyRequest().permitAll()
