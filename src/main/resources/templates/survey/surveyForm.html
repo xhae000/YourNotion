@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>설문 중 - [[${surveyTitle}]]</title>
+
+    <link rel="stylesheet" th:href="@{/css/survey/surveyForm.css}" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script th:src="@{/js/survey/surveyForm.js}"></script>
+</head>
+<th:block th:replace="/common/header :: headerFragment"/>
+<body>
+<div class="cont">
+    <div class="title-cont">
+        주식거래에 대해 어떻게 생각하시나요?
+    </div>
+    <form>
+        <div th:each="q : ${questions}" class="question-list">
+            <div class="question-cont">
+                <div class="question-title">
+                    Q. <span th:text="${q.question}"></span>
+                </div>
+                <div class="option-list">
+
+                    <div th:if="${q.question_type == 'obj'}" th:each="option : ${q.options}" class="obj-option-list">
+                        <label>
+                            <input th:type="radio" class="obj-option">
+                            <span th:text="${option}" class="option-des"></span>
+                        </label><br>
+
+                    </div>
+
+                    <div th:if="${q.question_type == 'sub'}" class="sub-option-list">
+                        <input th:type="text" class="sub-option" placeholder = "답변을 적어주세요."/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-cont">
+            <div class="submit-btn">
+                제출
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
