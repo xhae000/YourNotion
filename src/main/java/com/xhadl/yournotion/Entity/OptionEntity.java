@@ -15,12 +15,14 @@ public class OptionEntity {
 
     public OptionEntity(String option_des, int question_id){
         this.option_des = option_des;
-        this.question_id = question_id;
+        this.questionId = question_id;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String option_des;
-    int question_id;
+
+    @Column(name = "question_id")
+    int questionId;
 }
