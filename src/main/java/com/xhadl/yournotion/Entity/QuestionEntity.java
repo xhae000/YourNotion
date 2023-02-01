@@ -14,8 +14,8 @@ import javax.persistence.*;
 public class QuestionEntity {
 
     public QuestionEntity(int survey_id, String question_type, String question, String image){
-        this.survey_id = survey_id;
-        this.question_type = question_type;
+        this.surveyId = survey_id;
+        this.questionType = question_type;
         this.question = question;
         this.image = image;
     }
@@ -23,8 +23,10 @@ public class QuestionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    String question_type;
+    @Column(name="question_type")
+    String questionType;
     String question;
     String image;
-    int survey_id;
+    @Column(name = "survey_id")
+    int surveyId;
 }
