@@ -58,7 +58,7 @@ $(document).ready(function(){
                 <div class='obj-option' data-question-id="`+qId+`">
                     <input type='radio' onclick='return false' />
                     <span class="etc-input">기타 (주관식)</span>
-                    <input class="option-input" type="hidden" value="etc" />
+                    <input class="option-input" type="hidden" value="기타" />
                     <div class='delete-option'>×</div>
                 </div>
 `

@@ -28,7 +28,6 @@ public class QuestionFormDTO {
         }
 
     }
-
     String question;
     String question_type;
     String image;

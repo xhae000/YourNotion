@@ -40,6 +40,9 @@ input[type="text"]{
 .question-title{
     padding-bottom:14px;
 }
+.image-cont{
+    text-align:center;
+}
 .option-list {
     padding-left : 9px;
 }

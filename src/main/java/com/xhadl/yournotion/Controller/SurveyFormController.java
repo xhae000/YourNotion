@@ -7,6 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class SurveyFormController {
@@ -25,5 +29,11 @@ public class SurveyFormController {
         model.addAttribute("surveyTitle",surveyFormService.getSurveyTitle(surveyId));
 
         return "/survey/surveyForm";
+    }
+
+    @PostMapping("/survey/submit")
+    public String surveySubmit(@RequestParam(value="answer") List<String> answers){
+
+        return "redirect:/";
     }
 }
