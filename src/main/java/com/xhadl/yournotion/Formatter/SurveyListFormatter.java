@@ -14,7 +14,7 @@ import java.util.Map;
 public class SurveyListFormatter {
 
     @Autowired
-    DecimalFormat decimalFormatter;
+    private DecimalFormat decimalFormatter;
 
     public Map<String, String> formatSession(String time){
         Calendar cal = Calendar.getInstance();
