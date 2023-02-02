@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 public class IndexServiceImpl implements IndexService {
 
     @Autowired
-    SurveyRepository surveyRepository;
+    private SurveyRepository surveyRepository;
     @Override
     public String loadIndex(Model model) {
         model.addAttribute("surveyCount", surveyRepository.countBy());

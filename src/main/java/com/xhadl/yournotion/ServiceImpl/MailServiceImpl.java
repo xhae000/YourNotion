@@ -21,9 +21,9 @@ public class MailServiceImpl implements MailService {
     private String ePw;
     private Random random = new Random();
     @Autowired
-    MailAuthRepository mailAuthRepository;
+    private MailAuthRepository mailAuthRepository;
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     /* 대상 메일은 @ 이전만 받음*/
     @Override
