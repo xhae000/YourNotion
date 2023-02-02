@@ -4,6 +4,7 @@ import com.xhadl.yournotion.DTO.SurveyDTO;
 import com.xhadl.yournotion.Entity.UserEntity;
 import com.xhadl.yournotion.Formatter.SurveyListFormatter;
 import com.xhadl.yournotion.Formatter.UserFormatter;
+import com.xhadl.yournotion.Repository.SurveyParticipantRepository;
 import com.xhadl.yournotion.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +25,8 @@ public class SurveyValidator {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private SurveyParticipantRepository surveyParticipantRepository;
 
     public Boolean validate(SurveyDTO survey){
         if(!commonValidator.validate_size(survey.getTitle(),1,32))
@@ -57,11 +60,15 @@ public class SurveyValidator {
         Optional<UserEntity> user = userRepository.findByUsername(((UserDetails) principal).getUsername());
         if (user.isEmpty()) return false;
 
-        /* 2. 성별 검사 */
+        /* 2. 이미 참여한 설문인지 검사  */
+        if (surveyParticipantRepository.findBySurveyIdAndParticipantId(survey.getId(),user.get().getId())!=null)
+            return false;
+
+        /* 3. 성별 검사 */
         if (!user.get().getGender().equals(survey.getGender()) && !survey.getGender().equals("irr"))
             return false;
 
-        /* 3. 나이 검사 */
+        /* 4. 나이 검사 */
         int userAge = userFormatter.formatAge(user.get().getAge());
         return survey.getStart_age() <= userAge && survey.getEnd_age() >= userAge;
     }

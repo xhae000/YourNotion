@@ -18,6 +18,7 @@
         주식거래에 대해 어떻게 생각하시나요?
     </div>
     <form th:action="@{/survey/submit}" th:method = "post">
+        <input th:name="surveyId" th:attr="value=__${id}__" th:type="hidden" />
         <div th:each="q,i : ${questions}" class="question-list">
             <div class="question-cont">
                 <div class="question-title">
