@@ -1,6 +1,5 @@
 package com.xhadl.yournotion.Entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -8,10 +7,13 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name="survey_participant")
 public class SurveyParticipantEntity {
+    public SurveyParticipantEntity(int surveyId, int participantId){
+        this.surveyId = surveyId;
+        this.participantId = participantId;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
