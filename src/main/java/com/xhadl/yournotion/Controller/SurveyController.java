@@ -2,7 +2,7 @@ package com.xhadl.yournotion.Controller;
 
 import com.xhadl.yournotion.DTO.QuestionListDTO;
 import com.xhadl.yournotion.DTO.SurveyDTO;
-import com.xhadl.yournotion.Entity.SurveyAvailableEntity;
+import com.xhadl.yournotion.Service.PagingService;
 import com.xhadl.yournotion.Service.SurveyService;
 import com.xhadl.yournotion.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +26,9 @@ public class SurveyController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PagingService pagingService;
+
     @GetMapping("/survey/create")
     public String createSurvey(){
         return "/survey/create";
@@ -44,13 +47,13 @@ public class SurveyController {
     }
 
     @GetMapping("/surveyList")
-    public String surveyList(@PageableDefault(size=10) Pageable pageable, Model model, Authentication auth){
-        SurveyAvailableEntity userInfo = userService.addAgeGenderModel(auth);
-
-        model.addAttribute("user_age", userInfo.getFormatAge());
-        model.addAttribute("user_gender", userInfo.getGender());
-        model.addAttribute("surveys", surveyService.getSurveyList(pageable));
-
+    public String surveyList(@PageableDefault(size=10) Pageable pageable, Model model){
+        List<SurveyDTO> surveys = surveyService.getSurveyList(pageable);
+        if(surveys.size()==0) // 유저가 정해진 페이지를 초과해 접근하려하면 첫 페이지로 되돌림
+            return "redirect:/surveyList";
+        model.addAttribute("surveys", surveys);
+        /* pageRange : [startPage], [endPage], [summaryPage] */
+        model.addAttribute("pageRange", pagingService.getSurveyPageRange(pageable.getPageNumber()));
         return "/survey/surveyList";
     }
 

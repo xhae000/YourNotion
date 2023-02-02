@@ -39,6 +39,21 @@
                 </div>
         </div>
 
+        <div class="page-cont">
+            <div th:if="${pageRange[0]>10}" class="page-move-btn prev-btn">
+            <
+            </div>
+
+            <div style="display:inline-block;" th:each="page : ${#numbers.sequence(pageRange[0],pageRange[1])}">
+
+                <div th:text="${page}" th:attrappend="id=${page}-1" class="page-btn">
+                </div>
+            </div>
+
+            <div th:if="${pageRange[2] > pageRange[1]}" class="page-move-btn next-btn">
+                >
+            </div>
+        </div>
     </div>
 </body>
 </html>

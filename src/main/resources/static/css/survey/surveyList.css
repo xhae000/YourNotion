@@ -70,3 +70,24 @@ body{
     border-radius:30px;
     cursor:pointer;
 }
+
+.page-cont{
+    font-family: 'Nanum Gothic', sans-serif;
+}
+.page-btn{
+    padding:5px 12px;
+    border : 0.1px solid #c5c5c5;
+    font-size:17px;
+    display:inline-block;
+    margin:2px;
+    cursor:pointer;
+}
+
+.page-move-btn{
+    cursor:pointer;
+    padding:5px 12px;
+    border : 0.1px solid #c5c5c5;
+    font-size:17px;
+    display:inline-block;
+    margin:2px 4px;
+}
