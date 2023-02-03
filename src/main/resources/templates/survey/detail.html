@@ -63,9 +63,14 @@
         <div class="content-box">
             <h1>설명</h1>
             <div class="des-cont" th:text="${survey.des}"></div>
-            <h1 style="padding-top:35px;">설문 결과</h1>
+            <h1 style="padding-top:35px;">나의 응답</h1>
             <div class="result-cont">
-
+                <div class="my-survey-result" th:if="${isParticipated == true}">
+                    블ㄹ라블라
+                </div>
+                <div class="not-participated" th:if = "${isParticipated == false}">
+                    설문에 참여하면 확인할 수 있습니다.
+                </div>
             </div>
         </div>
     </div>

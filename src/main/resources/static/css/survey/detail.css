@@ -118,3 +118,9 @@ h1{
     text-align:left;
     padding : 0px 10px;
 }
+
+.not-participated{
+    font-size:15px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #313131;
+}

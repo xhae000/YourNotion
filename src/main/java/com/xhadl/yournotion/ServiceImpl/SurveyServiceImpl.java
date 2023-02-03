@@ -6,6 +6,7 @@ import com.xhadl.yournotion.DTO.SurveyDTO;
 import com.xhadl.yournotion.Entity.OptionEntity;
 import com.xhadl.yournotion.Entity.QuestionEntity;
 import com.xhadl.yournotion.Entity.SurveyEntity;
+import com.xhadl.yournotion.Entity.SurveyWantEntity;
 import com.xhadl.yournotion.Formatter.SurveyListFormatter;
 import com.xhadl.yournotion.Repository.*;
 import com.xhadl.yournotion.Service.SurveyService;
@@ -37,6 +38,8 @@ public class SurveyServiceImpl implements SurveyService {
     @Autowired
     private OptionRepository optionRepository;
     @Autowired
+    private SurveyWantRepository surveyWantRepository;
+    @Autowired
     private SurveyParticipantRepository surveyParticipantRepository;
     @Autowired
     private ModelMapper modelMapper;
@@ -46,9 +49,8 @@ public class SurveyServiceImpl implements SurveyService {
     private OptionValidator optionValidator;
     @Autowired
     private SurveyValidator surveyValidator;
-
     @Autowired
-    SurveyListFormatter timeFormatter;
+    private SurveyListFormatter timeFormatter;
 
 
     @Override
@@ -140,5 +142,22 @@ public class SurveyServiceImpl implements SurveyService {
         model.addAttribute("survey",survey);
         model.addAttribute("maker_nickname",userRepository.findById(survey.getMaker_id()).getNickname());
         model.addAttribute("question_cnt", questionRepository.countBySurveyId(id));
+    }
+
+    @Override
+    public boolean isParticipatedSurvey(int surveyId){
+        UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return surveyParticipantRepository.findBySurveyIdAndParticipantId(surveyId, userRepository.getUserId(user.getUsername())) != null;
+    }
+
+    @Override
+    public boolean addSurveyWant(int surveyId) {
+        UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        int userId = userRepository.getUserId(user.getUsername());
+
+        if(surveyWantRepository.findByUserIdAndSurveyId(userId, surveyId)!=null)
+            return false;
+        surveyWantRepository.save(new SurveyWantEntity(userId, surveyId));
+        return true;
     }
 }
