@@ -8,13 +8,9 @@ import com.xhadl.yournotion.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,7 +21,6 @@ public class SurveyController {
     private SurveyService surveyService;
     @Autowired
     private UserService userService;
-
     @Autowired
     private PagingService pagingService;
 
@@ -57,9 +52,16 @@ public class SurveyController {
         return "/survey/surveyList";
     }
 
-    @GetMapping("/survey/{id}")
-    public String surveyDetail(@PathVariable int id, Model model, Authentication auth){
+    @GetMapping("/survey/detail/{id}")
+    public String surveyDetail(@PathVariable int id, Model model){
         surveyService.setSurveyDetail(model , id);
+        model.addAttribute("isParticipated",surveyService.isParticipatedSurvey(id));
         return "/survey/detail";
+    }
+
+    @PostMapping("/survey/wantSurvey")
+    @ResponseBody
+    public Boolean wantSurvey(@RequestParam("id") int surveyId){
+        return surveyService.addSurveyWant(surveyId);
     }
 }
