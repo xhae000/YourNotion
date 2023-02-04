@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SurveyAvailableRepository extends JpaRepository<SurveyAvailableEntity, Long> {
+public interface SurveyAvailableRepository extends JpaRepository<SurveyAvailableEntity, Integer> {
     public SurveyAvailableEntity findByUsername(String username);
 }

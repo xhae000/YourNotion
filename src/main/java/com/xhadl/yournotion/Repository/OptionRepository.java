@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface OptionRepository extends JpaRepository<OptionEntity,Long> {
+public interface OptionRepository extends JpaRepository<OptionEntity,Integer> {
     public OptionEntity save(OptionEntity optionEntity);
 
     public List<OptionEntity> findAllByQuestionId(int questionId);

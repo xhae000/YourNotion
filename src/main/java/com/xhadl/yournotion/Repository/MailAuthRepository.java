@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MailAuthRepository extends JpaRepository<MailAuthEntity, Long> {
+public interface MailAuthRepository extends JpaRepository<MailAuthEntity, Integer> {
 
     public MailAuthEntity save(MailAuthEntity mailAuthEntity);
     public List<MailAuthEntity> findByEmail(String email);
