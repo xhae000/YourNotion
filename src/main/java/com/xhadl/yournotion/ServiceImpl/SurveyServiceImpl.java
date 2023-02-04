@@ -3,10 +3,7 @@ package com.xhadl.yournotion.ServiceImpl;
 import com.xhadl.yournotion.DTO.QuestionDTO;
 import com.xhadl.yournotion.DTO.QuestionListDTO;
 import com.xhadl.yournotion.DTO.SurveyDTO;
-import com.xhadl.yournotion.Entity.OptionEntity;
-import com.xhadl.yournotion.Entity.QuestionEntity;
-import com.xhadl.yournotion.Entity.SurveyEntity;
-import com.xhadl.yournotion.Entity.SurveyWantEntity;
+import com.xhadl.yournotion.Entity.*;
 import com.xhadl.yournotion.Formatter.SurveyListFormatter;
 import com.xhadl.yournotion.Repository.*;
 import com.xhadl.yournotion.Service.SurveyService;
@@ -41,6 +38,8 @@ public class SurveyServiceImpl implements SurveyService {
     private SurveyWantRepository surveyWantRepository;
     @Autowired
     private SurveyParticipantRepository surveyParticipantRepository;
+    @Autowired
+    private SurveySeeRepository surveySeeRepository;
     @Autowired
     private ModelMapper modelMapper;
     @Autowired
@@ -124,6 +123,7 @@ public class SurveyServiceImpl implements SurveyService {
 
         }
 
+        surveySeeRepository.save(new SurveySeeEntity(survey_id, 0));
         return survey_id;
     }
 
@@ -159,5 +159,10 @@ public class SurveyServiceImpl implements SurveyService {
             return false;
         surveyWantRepository.save(new SurveyWantEntity(userId, surveyId));
         return true;
+    }
+
+    @Override
+    public Integer getSurveySeeCount(int surveyId){
+        return surveySeeRepository.getSeeCount(surveyId);
     }
 }

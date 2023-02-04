@@ -16,4 +16,5 @@ public interface SurveyService {
     public void setSurveyDetail(Model model, int id);
     public boolean isParticipatedSurvey(int surveyId);
     public boolean addSurveyWant(int surveyId);
+    public Integer getSurveySeeCount(int surveyId);
 }

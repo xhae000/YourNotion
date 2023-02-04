@@ -3,6 +3,7 @@ package com.xhadl.yournotion.Controller;
 import com.xhadl.yournotion.DTO.QuestionListDTO;
 import com.xhadl.yournotion.DTO.SurveyDTO;
 import com.xhadl.yournotion.Service.PagingService;
+import com.xhadl.yournotion.Service.RedisService;
 import com.xhadl.yournotion.Service.SurveyService;
 import com.xhadl.yournotion.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class SurveyController {
     private UserService userService;
     @Autowired
     private PagingService pagingService;
+    @Autowired
+    private RedisService redisService;
 
     @GetMapping("/survey/create")
     public String createSurvey(){
@@ -38,7 +41,7 @@ public class SurveyController {
 
         // 생성과 동시에 survey id 반환
         int survey_id = surveyService.createSurvey(survey, question, options);
-        return "redirect:/survey/"+survey_id;
+        return "redirect:/survey/detail/"+survey_id;
     }
 
     @GetMapping("/surveyList")
@@ -55,7 +58,12 @@ public class SurveyController {
     @GetMapping("/survey/detail/{id}")
     public String surveyDetail(@PathVariable int id, Model model){
         surveyService.setSurveyDetail(model , id);
+        // 조회수 처리
+        redisService.increaseSeeCount(id);
+
         model.addAttribute("isParticipated",surveyService.isParticipatedSurvey(id));
+        model.addAttribute("seeCount",redisService.increaseSeeCount(id));
+
         return "/survey/detail";
     }
 
@@ -63,5 +71,15 @@ public class SurveyController {
     @ResponseBody
     public Boolean wantSurvey(@RequestParam("id") int surveyId){
         return surveyService.addSurveyWant(surveyId);
+    }
+
+    @GetMapping("/survey/myWant")
+    public String myWant(){
+        return "";
+    }
+
+    @GetMapping("/survey/mySurvey")
+    public String mySurvey(){
+        return "/survey/mySurvey";
     }
 }
