@@ -60,8 +60,8 @@ public class SurveyServiceImpl implements SurveyService {
 
 
     @Override
-    public List<SurveyDTO> getSurveyList(Pageable pageable){
-        List<SurveyEntity> surveyEntities = surveyRepository.findAllByOrderByIdDesc(pageable).getContent();
+    public List<SurveyDTO> getSurveyList(Pageable pageable, String keyword){
+        List<SurveyEntity> surveyEntities = surveyRepository.getSurveysByKeyword(pageable, keyword).getContent();
         List<SurveyDTO> surveys = surveyEntities.stream()
                 .map(p -> modelMapper.map(p, SurveyDTO.class)).collect(Collectors.toList());
 

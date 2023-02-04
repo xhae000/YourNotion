@@ -32,6 +32,16 @@ $(document).ready(function(){
             });
 
             $('.survey-btn').click(function(){
-                  location.href = "/survey/"+$(this).data('id');
+                  location.href = "/survey/detail/"+$(this).data('id');
             });
+
+            $('.search-btn').click(function(){
+                if($('.search-input').val()==''){
+                    alert("검색어를 입력해주세요.");
+                    $('.search-input').focus();
+                }
+                else
+                    location.href="/surveyList?keyword="+$('.search-input').val();
+            })
+
 });

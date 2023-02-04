@@ -91,3 +91,31 @@ body{
     display:inline-block;
     margin:2px 4px;
 }
+
+.search-input{
+    width:60%;
+    outline: none;
+    border : none;
+    border-bottom : 0.1px solid #c5c5c5;
+    font-family: 'Nanum Gothic', sans-serif;
+    padding:4px;
+    font-size : 16px;
+}
+
+.search-btn{
+    display: inline-block;
+    padding : 5px 15px;
+    color:white;
+    background-color: #313131;
+    font-family: 'Nanum Gothic', sans-serif;
+    border-radius: 3px;
+    margin-bottom : 9px;
+    cursor:pointer;
+}
+
+.no-survey{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: bold;
+    font-size:18px;
+    padding:32px;
+}

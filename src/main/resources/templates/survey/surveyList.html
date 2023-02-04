@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lagn="ko"
+<html lang="ko"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -7,17 +7,18 @@
     <link rel="stylesheet" th:href="@{/css/survey/surveyList.css}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-    <script th:inline="javascript">
-        const age = Number([[${user_age}]])
-        const gender = [[${user_gender}]]
-    </script>
-
     <script th:src="@{/js/survey/surveyList.js}"></script>
 </head>
 <body>
     <th:block th:replace="/common/header :: headerFragment"/>
     <div>
         <div class="survey-list-cont">
+                <div class="search-cont">
+                    <input class="search-input" placeholder="검색어를 입력해주세요."/>
+                    <div class="search-btn">
+                        검색
+                    </div>
+                </div>
                 <div th:each="survey : ${surveys}" class="survey-cont">
                     <div th:text="${survey.category}" class="survey-category" ></div>
 

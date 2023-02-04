@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface SurveyService {
     public SurveyDTO findById(int id);
-    List<SurveyDTO> getSurveyList(Pageable pageable);
+    List<SurveyDTO> getSurveyList(Pageable pageable, String keyword);
     public Integer createSurvey(SurveyDTO survey, QuestionListDTO questions, List<String> options) throws IOException;
     public int getSurveyCount();
     public void setSurveyDetail(Model model, int id);

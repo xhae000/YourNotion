@@ -45,10 +45,16 @@ public class SurveyController {
     }
 
     @GetMapping("/surveyList")
-    public String surveyList(@PageableDefault(size=10) Pageable pageable, Model model){
-        List<SurveyDTO> surveys = surveyService.getSurveyList(pageable);
-        if(surveys.size()==0) // 유저가 정해진 페이지를 초과해 접근하려하면 첫 페이지로 되돌림
-            return "redirect:/surveyList";
+    public String surveyList(
+            @PageableDefault(size=10) Pageable pageable,
+            Model model,
+            @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword){
+        /* 검색 시, 공백 유무 무관 */
+
+        List<SurveyDTO> surveys = surveyService.getSurveyList(pageable, keyword);
+        if(surveys.size()==0)
+            return "/survey/no_surveyList";
+
         model.addAttribute("surveys", surveys);
         /* pageRange : [startPage], [endPage], [summaryPage] */
         model.addAttribute("pageRange", pagingService.getSurveyPageRange(pageable.getPageNumber()));

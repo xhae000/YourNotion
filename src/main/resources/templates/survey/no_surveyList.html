@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>설문 참여하기</title>
+  <link rel="stylesheet" th:href="@{/css/survey/surveyList.css}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <script th:src="@{/js/survey/surveyList.js}"></script>
+</head>
+<body>
+<th:block th:replace="/common/header :: headerFragment"/>
+<div>
+  <div class="survey-list-cont">
+    <div class="search-cont">
+      <input class="search-input" placeholder="검색어를 입력해주세요."/>
+      <div class="search-btn">
+        검색
+      </div>
+    </div>
+    <div class="no-survey">
+      조건에 해당하는 설문이 없습니다.
+    </div>
+  </div>
+</div>
+</body>
+</html>
