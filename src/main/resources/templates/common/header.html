@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lagn="ko">
+<html lang="ko">
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
@@ -21,7 +21,13 @@
       Your Notion
     </div>
     <div class="bar-menu">
-      메뉴
+        <div class="menu-btn my-survey">
+            내 설문
+        </div>
+        |
+        <div class="menu-btn my-want">
+            내 관심목록
+        </div>
     </div>
     <div class="bar-status">
         <div sec:authorize="isAnonymous()" >

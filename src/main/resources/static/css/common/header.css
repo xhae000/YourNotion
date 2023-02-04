@@ -27,7 +27,19 @@
 }
 
 .bar-menu{
+    font-family: 'Noto Sans KR', sans-serif;
     display:inline-block;
+}
+
+.menu-btn{
+    display:inline-block;
+    font-family: 'Noto Sans KR', sans-serif;
+    margin : 0px 19px;
+    font-size:22px;
+    color : #575757;
+    cursor:pointer;
+    font-weight: bold;
+
 }
 
 .bar-status{
@@ -37,6 +49,7 @@
 }
 
 .header-security{
+    font-family: 'Noto Sans KR', sans-serif;
     cursor:pointer;
     display:inline-block;
     padding : 11px 23px;
