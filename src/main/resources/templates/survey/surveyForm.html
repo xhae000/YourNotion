@@ -8,16 +8,15 @@
     <link rel="stylesheet" th:href="@{/css/survey/surveyForm.css}" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
     <script th:src="@{/js/survey/surveyForm.js}"></script>
 </head>
 <th:block th:replace="/common/header :: headerFragment"/>
 <body>
 <div class="cont">
-    <div class="title-cont">
-        주식거래에 대해 어떻게 생각하시나요?
+    <div class="title-cont" th:text="${surveyTitle}">
     </div>
     <form th:action="@{/survey/submit}" th:method = "post">
+        <span id="question-size" style="display:none" th:text="${#lists.size(questions)}"></span>
         <input th:name="surveyId" th:attr="value=__${id}__" th:type="hidden" />
         <div th:each="q,i : ${questions}" class="question-list">
             <div class="question-cont">
@@ -31,19 +30,19 @@
 
                     <div th:if="${q.question_type == 'obj'}" th:each="option : ${q.options}" class="obj-option-list">
                         <label>
-                            <input th:name="answer" th:type="radio" th:value="${option}" class="obj-option" checked>
+                            <input th:name="|answer_${i.index}|" th:type="radio" th:value="${option}" class="obj-option as" checked>
                             <span th:text="${option}" class="option-des"></span>
                         </label><br>
 
                     </div>
 
                     <div th:if="${q.question_type == 'sub'}" class="sub-option-list">
-                        <input th:type="text" th:name = "answer" class="sub-option" placeholder = "답변을 적어주세요."/>
+                        <input th:type="text" th:name = "|answer_${i.index}|" class="sub-option as" placeholder = "답변을 적어주세요."/>
                     </div>
                 </div>
             </div>
         </div>
-
+        <input th:type="hidden" th:name="answer" />
         <div class="bottom-cont">
             <div class="submit-btn">
                 제출

@@ -79,13 +79,4 @@ public class SurveyController {
         return surveyService.addSurveyWant(surveyId);
     }
 
-    @GetMapping("/survey/myWant")
-    public String myWant(){
-        return "";
-    }
-
-    @GetMapping("/survey/mySurvey")
-    public String mySurvey(){
-        return "/survey/mySurvey";
-    }
 }

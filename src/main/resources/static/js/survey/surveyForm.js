@@ -11,6 +11,20 @@ $(document).ready(function(){
                 }
         });
 
+
+        let answers = [];
+
+        for(let i=0;i<parseInt($('#question-size').text());i++) {
+            let value = $("[name='answer_"+i+"']:checked").val();
+            if (typeof(value) == 'undefined')
+                value = $("[name='answer_"+i+"']").val();
+
+            answers[i] = value;
+            alert(value);
+        }
+
+        $('[name=answer]').val(answers);
+
         if(isFilled)
             $('form').submit();
 

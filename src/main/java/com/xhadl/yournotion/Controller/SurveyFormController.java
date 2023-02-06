@@ -42,6 +42,6 @@ public class SurveyFormController {
             @RequestParam(value="surveyId") int surveyId,
             @RequestParam(value="answer") List<String> answers){
         surveyFormService.submitSurvey(surveyId,new ArrayDeque<>(answers));
-        return "redirect:/";
+        return "redirect:/survey/detail/"+surveyId;
     }
 }
