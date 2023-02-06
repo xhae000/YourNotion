@@ -1,6 +1,7 @@
 /*header*/
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
 
 .top-bar{
@@ -33,9 +34,9 @@
 
 .menu-btn{
     display:inline-block;
-    font-family: 'Noto Sans KR', sans-serif;
-    margin : 0px 19px;
-    font-size:22px;
+    font-family: 'Jua', sans-serif;
+    margin : 15px 40px;
+    font-size:25px;
     color : #575757;
     cursor:pointer;
     font-weight: bold;
