@@ -12,9 +12,9 @@ public class SurveyDTO {
     String title;
     String des;
     String gender;
-    int maker_id;
-    int start_age;
-    int end_age;
+    int makerId;
+    int startAge;
+    int endAge;
     String time;
     String category;
 
@@ -34,7 +34,7 @@ public class SurveyDTO {
         this.isInSession = formatter.formatSession(this.time).get("isInSession");
 
         this.format_gender = formatter.formatGender(this.gender);
-        this.format_age =  formatter.formatAge(this.start_age, this.end_age);
+        this.format_age =  formatter.formatAge(this.startAge, this.endAge);
         this.participants = formatter.formatParticipants(count);
     }
 

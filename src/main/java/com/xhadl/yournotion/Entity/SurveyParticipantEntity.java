@@ -23,5 +23,6 @@ public class SurveyParticipantEntity {
     int surveyId;
     @Column(name = "participant_id")
     int participantId;
+    String time;
 
 }

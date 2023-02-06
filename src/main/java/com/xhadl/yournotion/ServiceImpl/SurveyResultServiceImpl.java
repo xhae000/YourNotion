@@ -20,6 +20,6 @@ public class SurveyResultServiceImpl implements SurveyResultService {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int userId = userRepository.getUserId(userDetails.getUsername());
 
-        return surveyRepository.findById(surveyId).getMaker_id() == userId;
+        return surveyRepository.findById(surveyId).getMakerId() == userId;
     }
 }

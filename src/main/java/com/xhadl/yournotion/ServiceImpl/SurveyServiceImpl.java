@@ -88,7 +88,7 @@ public class SurveyServiceImpl implements SurveyService {
         if(!surveyValidator.validate(survey) || !optionValidator.validate(options) || file_result == null)
             return null;
 
-        survey.setMaker_id(userId); // 설문 작성자 설정
+        survey.setMakerId(userId); // 설문 작성자 설정
 
         SurveyEntity surveyEntity = modelMapper.map(survey, SurveyEntity.class);
         int survey_id = surveyRepository.save(surveyEntity).getId(); // 설문 insert
@@ -140,7 +140,7 @@ public class SurveyServiceImpl implements SurveyService {
         model.addAttribute("isInSession", timeFormatter.formatSession(survey.getTime()).get("isInSession"));
         model.addAttribute("isAvailable", surveyValidator.isAvailable(survey).toString());
         model.addAttribute("survey",survey);
-        model.addAttribute("maker_nickname",userRepository.findById(survey.getMaker_id()).getNickname());
+        model.addAttribute("maker_nickname",userRepository.findById(survey.getMakerId()).getNickname());
         model.addAttribute("question_cnt", questionRepository.countBySurveyId(id));
     }
 

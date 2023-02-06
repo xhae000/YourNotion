@@ -22,9 +22,14 @@ public class SurveyEntity {
     String title;
     String des;
     String gender;
-    int maker_id;
-    int start_age;
-    int end_age;
+
+    @Column(name = "maker_id")
+    int makerId;
+
+    @Column(name = "start_age")
+    int startAge;
+    @Column(name = "end_age")
+    int endAge;
     String category;
     String time;
 

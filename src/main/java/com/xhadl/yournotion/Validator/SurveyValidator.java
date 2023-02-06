@@ -35,11 +35,11 @@ public class SurveyValidator {
         if (!commonValidator.validate_size(survey.getDes(),1,500))
             return false;
 
-        if(survey.getStart_age()>survey.getEnd_age())
+        if(survey.getStartAge()>survey.getEndAge())
             return false;
 
 
-        if (survey.getStart_age()<1 || survey.getEnd_age()>99)
+        if (survey.getStartAge()<1 || survey.getEndAge()>99)
             return false;
 
         String gender = survey.getGender();
@@ -70,6 +70,6 @@ public class SurveyValidator {
 
         /* 4. 나이 검사 */
         int userAge = userFormatter.formatAge(user.get().getAge());
-        return survey.getStart_age() <= userAge && survey.getEnd_age() >= userAge;
+        return survey.getStartAge() <= userAge && survey.getEndAge() >= userAge;
     }
 }

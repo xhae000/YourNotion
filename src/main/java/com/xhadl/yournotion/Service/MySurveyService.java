@@ -7,4 +7,5 @@ import java.util.List;
 public interface MySurveyService {
 
     public List<MySurveyDTO> getParticipatedSurveys();
+    public List<MySurveyDTO> getMadeSurveys();
 }
